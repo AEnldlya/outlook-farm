@@ -1,0 +1,92 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&f[]=general-sans@400,500,600&display=swap');
+
+/* Cabinet Grotesk: friendly display for equestrian lifestyle brand */
+/* General Sans: neutral body text for professional service communication */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-base: #FDF8F3;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFDF9;
+  --color-accent: #2D5A3D;
+  --color-accent-light: #4A7C5C;
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B6B6B;
+  --color-earth: #8B7355;
+  --color-gold: #C9A227;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-base)] text-[var(--color-text)] antialiased;
+    font-family: 'General Sans', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cabinet Grotesk', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Cabinet Grotesk', sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'General Sans', sans-serif;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-earth)];
+  }
+  
+  .card-hover {
+    @apply transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1;
+  }
+  
+  .btn-fill-sweep {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-fill-sweep::before {
+    content: '';
+    @apply absolute inset-0 bg-[var(--color-accent)] transform -translate-x-full transition-transform duration-500;
+  }
+  
+  .btn-fill-sweep:hover::before {
+    @apply translate-x-0;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-earth);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
