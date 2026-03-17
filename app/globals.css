@@ -1,92 +1,298 @@
-@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&f[]=general-sans@400,500,600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap');
 
-/* Cabinet Grotesk: friendly display for equestrian lifestyle brand */
-/* General Sans: neutral body text for professional service communication */
+/* 
+  $50K-TIER TYPOGRAPHY SYSTEM
+  Clash Display: Bold, editorial display font for headlines
+  Satoshi: Refined geometric sans for body text
+*/
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-base: #FDF8F3;
-  --color-surface: #FFFFFF;
-  --color-surface-elevated: #FFFDF9;
-  --color-accent: #2D5A3D;
-  --color-accent-light: #4A7C5C;
-  --color-text: #1A1A1A;
-  --color-text-muted: #6B6B6B;
-  --color-earth: #8B7355;
-  --color-gold: #C9A227;
+  /* 4-COLOR PREMIUM PALETTE */
+  --color-primary: #2D5A3D;      /* Deep forest green - dominant */
+  --color-accent: #C9A227;       /* Rich gold - luxury accent */
+  --color-dark: #1A1A1A;         /* Near-black - text/backgrounds */
+  --color-light: #FDF8F3;        /* Warm cream - backgrounds */
+  
+  /* Extended palette for depth */
+  --color-primary-light: #3D7A51;
+  --color-accent-light: #DDBB3A;
+  --color-dark-elevated: #252525;
+  --color-light-elevated: #FFFDF9;
+  --color-muted: #6B6B6B;
+  
+  /* Animation timing - luxury pacing */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-slow: 1.2s;
+  --duration-medium: 0.8s;
+  --duration-fast: 0.4s;
 }
 
 @layer base {
+  * {
+    @apply border-[#1A1A1A]/10;
+  }
+  
   body {
-    @apply bg-[var(--color-base)] text-[var(--color-text)] antialiased;
-    font-family: 'General Sans', sans-serif;
+    @apply bg-[var(--color-light)] text-[var(--color-dark)] antialiased;
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-feature-settings: "ss01" on, "ss02" on;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cabinet Grotesk', sans-serif;
-    font-weight: 700;
+    font-family: 'Clash Display', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 {
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+  }
+  
+  h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.1;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: 'Cabinet Grotesk', sans-serif;
+    font-family: 'Clash Display', sans-serif;
+    letter-spacing: -0.02em;
   }
   
   .font-body {
-    font-family: 'General Sans', sans-serif;
+    font-family: 'Satoshi', sans-serif;
   }
   
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-earth)];
+  /* Glass morphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
-  .card-hover {
-    @apply transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1;
+  .glass-dark {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
   
-  .btn-fill-sweep {
+  .glass-light {
+    background: rgba(253, 248, 243, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(26, 26, 26, 0.05);
+  }
+  
+  /* Premium text gradients */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--color-accent) 0%, #E8C547 50%, var(--color-accent) 100%);
+  }
+  
+  .text-gradient-green {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  }
+  
+  /* 3D perspective container */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  /* Magnetic button base */
+  .magnetic-btn {
     @apply relative overflow-hidden;
+    transition: transform 0.3s var(--ease-luxury);
   }
   
-  .btn-fill-sweep::before {
+  /* Sharp button style */
+  .btn-sharp {
+    @apply px-8 py-4 font-semibold text-sm tracking-wide uppercase;
+    border-radius: 0;
+    transition: all 0.5s var(--ease-luxury);
+  }
+  
+  /* Pill button style */
+  .btn-pill {
+    @apply px-8 py-4 font-semibold text-sm tracking-wide;
+    border-radius: 9999px;
+    transition: all 0.5s var(--ease-luxury);
+  }
+  
+  /* Luxury hover states */
+  .hover-lift {
+    transition: transform 0.6s var(--ease-luxury), box-shadow 0.6s var(--ease-luxury);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Blueprint line animation */
+  .blueprint-line {
+    position: relative;
+  }
+  
+  .blueprint-line::after {
     content: '';
-    @apply absolute inset-0 bg-[var(--color-accent)] transform -translate-x-full transition-transform duration-500;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.8s var(--ease-luxury);
   }
   
-  .btn-fill-sweep:hover::before {
-    @apply translate-x-0;
+  .blueprint-line:hover::after {
+    width: 100%;
+  }
+  
+  /* Stamp animation */
+  .stamp-appear {
+    animation: stampIn 0.6s var(--ease-luxury) forwards;
+  }
+  
+  @keyframes stampIn {
+    0% {
+      opacity: 0;
+      transform: scale(1.5) rotate(-10deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+  
+  /* Curtain reveal */
+  .curtain-reveal {
+    clip-path: inset(0 100% 0 0);
+    animation: curtainReveal 1.2s var(--ease-luxury) forwards;
+  }
+  
+  @keyframes curtainReveal {
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  
+  /* Signature draw animation */
+  .signature-draw {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 2s var(--ease-luxury) forwards;
+  }
+  
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* 3D rotation */
+  .rotate-3d {
+    animation: rotate3d 20s linear infinite;
+  }
+  
+  @keyframes rotate3d {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  /* Noise texture overlay */
+  .noise {
+    position: relative;
+  }
+  
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
   }
 }
 
-/* Smooth scroll */
+/* Smooth scroll with offset for fixed nav */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - minimal */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-base);
+  background: var(--color-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-earth);
-  border-radius: 3px;
+  background: var(--color-primary);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }
 
-/* Selection */
+/* Selection styling */
 ::selection {
   background: var(--color-accent);
-  color: white;
+  color: var(--color-dark);
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
