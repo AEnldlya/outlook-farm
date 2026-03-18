@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Cabinet Grotesk', 'sans-serif'],
-        body: ['General Sans', 'sans-serif'],
+        display: ['Clash Display', 'sans-serif'],
+        body: ['Satoshi', 'system-ui', 'sans-serif'],
       },
       colors: {
         'pasture-green': '#2D5A3D',
