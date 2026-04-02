@@ -48,7 +48,6 @@
     @apply bg-[var(--color-light)] text-[var(--color-dark)] antialiased;
     font-family: 'Satoshi', system-ui, sans-serif;
     font-feature-settings: "ss01" on, "ss02" on;
-    cursor: none; /* Hide default cursor for custom cursor */
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -70,11 +69,6 @@
   h3 {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     line-height: 1.1;
-  }
-  
-  /* Interactive elements should show custom cursor */
-  a, button, [role="button"] {
-    cursor: none;
   }
 }
 
@@ -309,32 +303,6 @@
     mix-blend-mode: overlay;
   }
   
-  /* Custom cursor styles */
-  .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--color-accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s var(--ease-luxury), height 0.3s var(--ease-luxury), background 0.3s var(--ease-luxury);
-    mix-blend-mode: difference;
-  }
-  
-  .cursor-dot.expanded {
-    width: 60px;
-    height: 60px;
-    background: transparent;
-    border: 1px solid var(--color-accent);
-    mix-blend-mode: normal;
-  }
-  
-  .cursor-dot.clicking {
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  
   /* Image hover effect - complex multi-property */
   .image-hover-premium {
     transition: 
@@ -479,13 +447,5 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  
-  body {
-    cursor: auto;
-  }
-  
-  .cursor-dot {
-    display: none;
   }
 }
